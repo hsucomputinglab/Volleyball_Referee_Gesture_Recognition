@@ -2,7 +2,7 @@
 This project focuses on recognizing volleyball referee gestures from video . The system supports real-time inference, gesture recognition, and automatic match segmentation.
 
 
-## 📁 Project Structure
+## 📁 File Structure
 ```
 Volleyball_Referee_Gesture_Recognition/
 ├── cfg/ # Configuration files
@@ -46,6 +46,11 @@ model Training： torchrun main.py -c cfg/models/X3D_4816.yaml
 model Inference： python export/Clip.py 
 -  可修改推論腳本：export/Clip.py
 ```
+
+## 🎥 Demo:
+[![Watch the demo](https://img.youtube.com/vi/wVt9C7jx5W0/hqdefault.jpg)](https://www.youtube.com/watch?v=wVt9C7jx5W0)
+
+This demo showcases real-time referee gesture classification and automatic match segmentation using the X3D-based model.
 
 
 
