@@ -1,0 +1,27 @@
+__include__: [
+  'include/dataloader.yaml',
+  'include/optimizer.yaml',
+  'include/model.yaml',
+]
+
+output_dir: ./output/X3D_4816
+multi_scale: False
+in_channels: [120, 240, 480]
+frame_num: 5
+jump_frame: 2
+num_classes: 6
+
+criterion:
+  type: SetCriterion
+  weight_dict: { loss_vfl: 4, loss_bbox: 2, loss_eiou: 2}
+  losses: [ 'vfl', 'boxes']
+  alpha: 0.75
+  gamma: 2.0
+  num_classes: 6
+
+  matcher:
+    type: HungarianMatcher
+    weight_dict: { cost_class: 4, cost_bbox: 3, cost_giou: 2 }
+    use_focal_loss: True
+    alpha: 0.25
+    gamma: 2.0

@@ -1,0 +1,39 @@
+__include__: [
+  'include/dataloader.yaml',
+  'include/optimizer.yaml',
+  'include/model.yaml',
+]
+
+output_dir: ./output/I3D
+feat_strides: [4, 8, 16]
+in_channels: [384, 512, 512] # 配 5 2
+# in_channels: [640, 748, 1024] to 9 1
+aux: [1856, 896, 960]
+frame_num: 5
+jump_frame: 2
+multi_scale: False
+num_classes: 8
+use_encoder_idx: [-1]
+num_encoder_layers: 3
+expansion: 1
+batch_size: 2
+
+backbone:
+  type: I3D18
+
+criterion:
+  type: SetCriterion
+  weight_dict: { loss_vfl: 1, loss_bbox: 5, loss_eiou: 2}
+  losses: [ 'vfl', 'boxes']
+  alpha: 0.75
+  gamma: 2.0
+  num_classes: 5
+
+  matcher:
+    type: HungarianMatcher
+    weight_dict: { cost_class: 2, cost_bbox: 5, cost_giou: 2 }
+    use_focal_loss: True
+    alpha: 0.25
+    gamma: 2.0
+
+

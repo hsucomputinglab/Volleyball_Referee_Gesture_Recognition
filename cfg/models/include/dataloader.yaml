@@ -1,0 +1,62 @@
+num_classes: 10
+remap_mscoco_category: False
+
+train_dataloader:
+  type: DataLoader
+  dataset:
+    type: ActionVideoDataset
+    img_folder: /home/nckusoc/Documents/CrowdEyes/volleyball_label/Dataset_中正堂_8c_以觀衆
+    frame_num: 5
+    jump_frame: 2
+    clip_ids: [0]
+    training: True
+    transforms:
+      type: Compose
+      ops:
+#        - { type: RandomHorizontalFlip }
+        # - { type: Resize, size: [ 576, 1024 ], }
+        - { type: RandomPhotometricDistort, p: 0.5 }
+        - { type: RandomZoomOut, fill: 0 }
+        - { type: RandomIoUCrop, p: 0.8 }
+        - { type: Resize, size: [576, 1024], }
+        - { type: SanitizeBoundingBox, min_size: 1 }
+        - { type: ToImageTensor }
+        - { type: ConvertDtype }
+        - { type: SanitizeBoundingBox, min_size: 1 }
+        - { type: ConvertBox, out_fmt: 'cxcywh', normalize: True }
+  shuffle: True
+  batch_size: 4
+  num_workers: 16
+  pin_memory: True
+  drop_last: True
+  collate_fn:
+    type: default_collate_fn
+
+val_dataloader:
+  type: DataLoader
+  dataset:
+    type: ActionVideoDataset
+    img_folder: /home/nckusoc/Documents/CrowdEyes/volleyball_label/Dataset_中正堂_8c_以觀衆
+    frame_num: 5
+    jump_frame: 2
+    clip_ids: [1]
+    training: False
+    transforms:
+      type: Compose
+      ops:
+        - { type: Resize, size: [576, 1024],}
+        - { type: ToImageTensor }
+        - { type: ConvertDtype }
+
+  shuffle: False
+  batch_size: 4
+  num_workers: 8
+  pin_memory: True
+  drop_last: False
+  collate_fn:
+    type: default_collate_fn
+
+
+
+
+

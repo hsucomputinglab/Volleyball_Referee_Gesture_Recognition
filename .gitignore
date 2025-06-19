@@ -1,0 +1,27 @@
+# 模型檔
+*.pth
+*.pt
+
+# 關鍵點與中間資料
+*.npy
+*.npz
+*.pkl
+
+# 視訊檔
+*.mp4
+*.avi
+*.mov
+*.mkv
+
+# 訓練資料集資料夾（你也可以改成特定名稱）
+dataset/
+data/
+output/
+
+# 暫存檔、自動產生檔
+__pycache__/
+.ipynb_checkpoints/
+*.log
+.DS_Store
+
+

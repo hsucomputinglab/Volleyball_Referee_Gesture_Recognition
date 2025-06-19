@@ -1,0 +1,28 @@
+__include__: [
+  'include/dataloader.yaml',
+  'include/optimizer.yaml',
+  'include/model.yaml',
+]
+# 調整frame_num, jump_frame, num_classes
+output_dir: ./output/X3D_8c_5_2
+multi_scale: False
+in_channels: [120,240,480]
+frame_num: 5
+jump_frame: 2
+num_classes: 8
+
+# 調整權重
+criterion:
+  type: SetCriterion
+  weight_dict: { loss_vfl: 4, loss_bbox: 2, loss_eiou: 2}
+  losses: [ 'vfl', 'boxes']
+  alpha: 0.75
+  gamma: 2.0
+  num_classes: 8
+
+  matcher:
+    type: HungarianMatcher
+    weight_dict: { cost_class: 5, cost_bbox: 2, cost_giou: 2 } # 原4 3 2
+    use_focal_loss: True
+    alpha: 0.25
+    gamma: 2.0

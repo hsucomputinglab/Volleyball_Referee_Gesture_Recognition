@@ -1,0 +1,64 @@
+model:
+  type: RTDETR
+  backbone:
+    type: X3D_xs
+    # X3D_xs
+    # I3D18
+    feat_strides: [4, 8, 16]
+ 
+
+  encoder:
+    type: HybridEncoder
+    in_channels: [216, 432, 864]
+    feat_strides: [4, 8, 16]
+    hidden_dim: 256
+    use_encoder_idx: []
+    num_encoder_layers: 1
+    nhead: 8
+    dim_feedforward: 1024
+    dropout: 0.
+    enc_act: 'gelu'
+    pe_temperature: 10000
+    expansion: 0.5
+    depth_mult: 1
+    act: 'silu'
+    eval_spatial_size: [576, 1024]
+
+  decoder:
+    type: RTDETRTransformer
+    feat_channels: [256, 256, 256]
+    feat_strides: [4, 8, 16]
+    hidden_dim: 256
+    num_levels: 3
+    num_queries: 300
+    num_classes: 10
+    num_decoder_layers: 6
+    nhead: 8
+    num_denoising: 300
+    eval_idx: -1
+    eval_spatial_size: [576, 1024]
+  aux: [1984, 1024, 960]
+  num_classes: 10
+  multi_scale: [480, 512, 544, 576, 608, 640, 640, 640, 672, 704, 736, 768, 800]
+
+
+criterion:
+  type: SetCriterion
+  weight_dict: { loss_vfl: 1, loss_bbox: 5, loss_giou: 2}
+  losses: [ 'vfl', 'boxes']
+  alpha: 0.75
+  gamma: 2.0
+  num_classes: 10
+
+  matcher:
+    type: HungarianMatcher
+    weight_dict: { cost_class: 2, cost_bbox: 5, cost_giou: 2 }
+    use_focal_loss: True
+    alpha: 0.25
+    gamma: 2.0
+
+postprocessor:
+    type: RTDETRPostProcessor
+    num_top_queries: 300
+    num_classes: 10
+    remap_mscoco_category: False
