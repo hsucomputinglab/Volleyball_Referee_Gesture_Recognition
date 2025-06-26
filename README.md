@@ -44,7 +44,7 @@ pip install -r requirements.txt
 model Training： torchrun main.py -c cfg/models/X3D_4816.yaml 
 - 可修改設定檔：cfg/models/X3D_4816.yaml
 model Inference： python export/Clip.py 
--  可修改推論腳本：export/Clip.py
+- 可修改推論腳本：export/Clip.py
 ```
 
 ## 🎥 Demo:
