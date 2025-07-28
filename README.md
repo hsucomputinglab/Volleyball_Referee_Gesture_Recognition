@@ -56,4 +56,8 @@ This submodule provides tools for annotating, formatting, and preprocessing refe
 - python train_test_split.py
 分成訓練和測試集
 
-![WorkFlow](./Data_Processsing_Flow.png)
+## 🧪 Labeling Workflow Image
+
+![WorkFlow](https://github.com/hsucomputinglab/Volleyball_Referee_Gesture_Recognition/blob/label-tool/Data_Processing_Flow.png?raw=true)
+
+
