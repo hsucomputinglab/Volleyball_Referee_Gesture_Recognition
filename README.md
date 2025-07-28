@@ -42,10 +42,10 @@ pip install -r requirements.txt
 ## 📓 Usage：
 ```
 model Training： torchrun main.py -c cfg/models/X3D_4816.yaml 
-- 可修改設定檔：cfg/models/X3D_4816.yaml
+- 可修改設定檔：cfg/models/X3D_4816.yaml (可修改模型參數)
 model Inference： python export/Clip.py 
 - 可修改推論腳本：export/Clip.py (影片發球點到得分點自動裁切)
-- 可修改推論腳本：export/New-volleyballsystem.py (整個系統包含切片與計分)
+- 可修改推論腳本：export/New-Volleyball-System.py (整個系統包含切片與計分)
 ```
 
 ## 🎥 Demo:
