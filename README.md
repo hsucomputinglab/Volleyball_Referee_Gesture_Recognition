@@ -7,7 +7,7 @@ This project focuses on recognizing volleyball referee gestures from video . The
 Volleyball_Referee_Gesture_Recognition/
 ├── cfg/ # Configuration files
 ├── src/ # Source code for model and pipeline
-├── export/ # Scripts for exporting results
+├── export/ # Scripts for exporting results 
 ├── Clip_Estimation/ # Referee gesture estimation module
 ├── FPS_TEST/ # FPS testing and performance analysis
 ├── output_images/ # Inference result visualizations
@@ -32,7 +32,7 @@ pip install -r requirements.txt
 
 ##  📦 Dataset: Datasets are not included due to size limitations.
 ```
-- Download the dataset here: (目前還在整理檔案太大）
+- Download the dataset here: (目前資料放在Lab電腦外接硬碟中）
 - dataset structure
  - Youtube-5c:   hand up, elbow, stand, point, no meaning
  - Youtube-6c:   Left hand up, Right hand up, Left elbow, Right elbow, stand, point
@@ -44,7 +44,8 @@ pip install -r requirements.txt
 model Training： torchrun main.py -c cfg/models/X3D_4816.yaml 
 - 可修改設定檔：cfg/models/X3D_4816.yaml
 model Inference： python export/Clip.py 
-- 可修改推論腳本：export/Clip.py
+- 可修改推論腳本：export/Clip.py (影片發球點到得分點自動裁切)
+- 可修改推論腳本：export/New-volleyballsystem.py (整個系統包含切片與計分)
 ```
 
 ## 🎥 Demo:
